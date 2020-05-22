@@ -1,5 +1,5 @@
 import os
-from config import BaseConfiguration, TestingConfiguration
+from config.config import BaseConfiguration, TestingConfiguration
 
 """
 This class is intended to build a starting application setup including:
