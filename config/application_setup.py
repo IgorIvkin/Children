@@ -6,17 +6,15 @@ Date: 2020.05.22
 import os
 from config.config import BaseConfiguration, TestingConfiguration
 
-"""
-This class is intended to build a starting application setup including:
- - configuration setup
-"""
-
 
 class ApplicationSetup(object):
+    """This class is intended to build a starting application setup including:
+     - configuration setup
+    """
     setup_mode = "common"
     config = None
 
-    def __init__(self):
+    def __init__(self, app):
         self.setup_mode = os.environ.get("FLASK_SETUP_MODE", default="common")
         if self.setup_mode == "tests":
             self.config = TestingConfiguration()
