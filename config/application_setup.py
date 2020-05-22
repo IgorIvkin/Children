@@ -1,3 +1,8 @@
+"""
+Author: Igor
+Date: 2020.05.22
+"""
+
 import os
 from config.config import BaseConfiguration, TestingConfiguration
 
