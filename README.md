@@ -6,7 +6,7 @@ This small Python application represents a web-site with content for children an
 Prepare a virtual environment first:
 
 ```
-	python -m venv venv
-	venv\Scripts\activate
-	pip install -r requirements.txt
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
 ```
