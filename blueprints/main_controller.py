@@ -10,4 +10,4 @@ main_controller = Blueprint("main_controller", __name__)
 
 @main_controller.route('/')
 def render_main_page():
-    return render_template("mainpage/mainpage.html"), 404
+    return render_template("mainpage/mainpage.html")
