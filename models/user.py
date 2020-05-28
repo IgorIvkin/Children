@@ -3,9 +3,7 @@ Author: Igor
 Date: 2020.05.28
 """
 
-from config.database import get_database_engine
-
-db = get_database_engine()
+from children import db
 
 
 class User(db.Model):

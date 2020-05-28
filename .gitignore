@@ -1,6 +1,7 @@
 __pycache__/
 venv/
 infrastructure/
+.pytest_cache/
 
 # IDEA specific-folders
 .idea/
