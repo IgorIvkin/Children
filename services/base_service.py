@@ -10,6 +10,7 @@ class BaseService(object):
     """This class provides generic operations over
     all the typical ID-based entities."""
     app = None
+    base_class = db.Model
 
     def __init__(self, app):
         self.app = app
@@ -45,7 +46,8 @@ class BaseService(object):
         return entity
 
     def get_by_id(self, id):
-        """TODO: implement it, for Lena"""
-        pass
+        # Return the object from db by id
+        obj = self.base_class.query.filter_by(id=id).first()
+        return obj
 
 

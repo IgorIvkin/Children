@@ -24,3 +24,14 @@ def test_create_user_fail_none_entity_provided(app):
         with pytest.raises(ValueError, match=r"None object was provided to create new entity.*"):
             user = user_service.create(None)
 
+
+def test_get_by_id(app):
+    with app.app_context():
+        user_service = UserService(app)
+        user = User()
+        user.login = 'test@example.com'
+        user.password = 'test'
+        user = user_service.create(user)
+        assert user_service.get_by_id(user.id).id == user.id and user_service.get_by_id(user.id).login == user.login
+
+

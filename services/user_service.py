@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash
 class UserService(BaseService):
     """This class provides generic operations over users."""
     app = None
+    base_class = User
 
     def __init__(self, app):
         super().__init__(app)
