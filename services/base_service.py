@@ -45,9 +45,35 @@ class BaseService(object):
         db.session.refresh(entity)
         return entity
 
-    def get_by_id(self, id):
+    def update(self, id_entity, fields_to_update: dict, fail_if_entity_not_exists=False):
+        existing_entity = self.get_by_id(id_entity)
+
+        if existing_entity is not None:
+            # Scroll all the items in fields to update and apply them to existing entity
+            for key, value in fields_to_update.items():
+                if value is not None:
+                    if hasattr(existing_entity, key):
+                        setattr(existing_entity, key, value)
+                    else:
+                        raise ValueError('No such key {0} presented to update the object ID {1} with class {2}'
+                                         .format(key, id_entity, self.__class__.__name__))
+
+            # Now add the updated entity to session and save it
+            db.session.add(existing_entity)
+            db.session.commit()
+            db.session.refresh(existing_entity)
+            return existing_entity
+        else:
+            # Show the ID and current class name in the exception if we need to fail
+            if fail_if_entity_not_exists:
+                raise ValueError("The entity with ID {0} doesn't presented to update with class {1}"
+                                 .format(id_entity,
+                                         self.__class__.__name__))
+            return None
+
+    def get_by_id(self, id_entity):
         # Return the object from db by id
-        obj = self.base_class.query.filter_by(id=id).first()
+        obj = self.base_class.query.filter_by(id=id_entity).first()
         return obj
 
 

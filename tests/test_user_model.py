@@ -35,3 +35,20 @@ def test_get_by_id(app):
         assert user_service.get_by_id(user.id).id == user.id and user_service.get_by_id(user.id).login == user.login
 
 
+def test_update_user_cannot_change_login(app):
+    # TODO: for Lena, be sure that we have at least 1 user here
+    with app.app_context():
+        user_service = UserService(app)
+        with pytest.raises(ValueError, match=r"Login cannot be presented to update user*"):
+            updated_user = user_service.update(1, {'login': 'test3@example.com'})
+
+
+def test_update_user_change_title_and_password(app):
+    # TODO: for Lena, be sure that password was changed here
+    with app.app_context():
+        user_service = UserService(app)
+        updated_user = user_service.update(1, {'title': 'Test title!', 'password': 'newpwd'})
+        assert updated_user.title == 'Test title!'
+
+
+

@@ -6,7 +6,9 @@ Date: 2020.05.28
 from children import db
 from datetime import datetime
 
+# User type - plain user
 USER_TYPE_PLAIN = 1
+# User type - administrator, has full access to application
 USER_TYPE_ADMIN = 2
 
 
