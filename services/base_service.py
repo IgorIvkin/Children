@@ -1,5 +1,5 @@
 """
-Author: Igor
+Author: Igor, Lena
 Date: 2020.05.30
 """
 
@@ -11,9 +11,11 @@ class BaseService(object):
     all the typical ID-based entities."""
     app = None
     base_class = db.Model
+    model_columns = []
 
     def __init__(self, app):
         self.app = app
+        self.model_columns = self.base_class.__table__.columns.keys()
 
     @classmethod
     def pre_check_automatic_id(cls, target_function):
@@ -45,7 +47,7 @@ class BaseService(object):
         db.session.refresh(entity)
         return entity
 
-    def update(self, id_entity, fields_to_update: dict, fail_if_entity_not_exists=False):
+    def update(self, id_entity, fields_to_update: dict, fail_if_entity_not_exists=True):
         existing_entity = self.get_by_id(id_entity)
 
         if existing_entity is not None:
@@ -53,9 +55,14 @@ class BaseService(object):
             for key, value in fields_to_update.items():
                 if value is not None:
                     if hasattr(existing_entity, key):
-                        setattr(existing_entity, key, value)
+                        if self.__model_has_column__(key):
+                            setattr(existing_entity, key, value)
+                        else:
+                            raise ValueError('Model definition does not have such key {0} presented to ' +
+                                             'update the object ID {1} with class {2}'
+                                             .format(key, id_entity, self.__class__.__name__))
                     else:
-                        raise ValueError('No such key {0} presented to update the object ID {1} with class {2}'
+                        raise ValueError('No such attribute {0} presented to update the object ID {1} with class {2}'
                                          .format(key, id_entity, self.__class__.__name__))
 
             # Now add the updated entity to session and save it
@@ -75,5 +82,26 @@ class BaseService(object):
         # Return the object from db by id
         obj = self.base_class.query.filter_by(id=id_entity).first()
         return obj
+
+    def delete_by_id(self, id_entity, fail_if_entity_not_exists=False):
+        # delete the object from db by id
+        obj = self.get_by_id(id_entity)
+        if obj is not None:
+            db.session.delete(obj)
+            db.session.commit()
+        else:
+            if fail_if_entity_not_exists:
+                raise ValueError("The entity with ID {0} doesn't presented to delete with class {1}"
+                                 .format(id_entity,
+                                         self.__class__.__name__))
+
+    def delete_all(self):
+        db.session.query(self.base_class).delete()
+        db.session.commit()
+
+    def __model_has_column__(self, key):
+        return key in self.model_columns
+
+
 
 

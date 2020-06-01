@@ -1,11 +1,22 @@
 """
-Author: Igor
+Author: Igor, Lena
 Date: 2020.05.30
 """
 
+from children import create_app
 from models.user import User
 from services.user_service import UserService
 import pytest
+from werkzeug.security import check_password_hash
+
+
+@pytest.fixture(scope='module')
+def app():
+    app = create_app(test_mode=True)
+    yield app
+    with app.app_context():
+        user_service = UserService(app)
+        user_service.delete_all()
 
 
 def test_create_user(app):
@@ -36,19 +47,51 @@ def test_get_by_id(app):
 
 
 def test_update_user_cannot_change_login(app):
-    # TODO: for Lena, be sure that we have at least 1 user here
     with app.app_context():
         user_service = UserService(app)
         with pytest.raises(ValueError, match=r"Login cannot be presented to update user*"):
-            updated_user = user_service.update(1, {'login': 'test3@example.com'})
+            updated_user = user_service.update(id_entity=1, fields_to_update={'login': 'test3@example.com'})
 
 
 def test_update_user_change_title_and_password(app):
-    # TODO: for Lena, be sure that password was changed here
     with app.app_context():
         user_service = UserService(app)
-        updated_user = user_service.update(1, {'title': 'Test title!', 'password': 'newpwd'})
-        assert updated_user.title == 'Test title!'
+        user = User()
+        user.login = 'tes4@example.com'
+        user.password = 'test1'
+        user.title = 'First title'
+        user = user_service.create(user)
+        new_title = 'Test title!'
+        new_password = 'newpwd'
+        updated_user = user_service.update(user.id, {'title': new_title, 'password': new_password})
+        assert updated_user.title == new_title
+        assert check_password_hash(user.password, new_password)
+
+
+def test_delete_by_id(app):
+    with app.app_context():
+        user_service = UserService(app)
+        user = User()
+        user.login = 'test5@example.com'
+        user.password = 'test1'
+        user = user_service.create(user)
+        user_service.delete_by_id(user.id)
+        assert user_service.get_by_id(user.id) is None
+
+
+def test_update_user_cannot_assign_bad_column(app):
+    with app.app_context():
+        user_service = UserService(app)
+        user = User()
+        user.login = 'tes4@example.com'
+        user.password = 'test1'
+        user = user_service.create(user)
+        with pytest.raises(ValueError, match=r"Model definition does not have such key*"):
+            updated_user = user_service.update(user.id, {'metadata': 'test'})
+
+
+
+
 
 
 
