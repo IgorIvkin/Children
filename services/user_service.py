@@ -5,7 +5,7 @@ Date: 2020.05.30
 
 from services.base_service import BaseService
 from models.user import User
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 
@@ -57,9 +57,22 @@ class UserService(BaseService):
                               fields_to_update,
                               fail_if_entity_not_exists)
 
+    def get_by_login(self, login):
+        """Returns a user by a given login. Returns None if nothing was found.
+        """
+        entity = self.base_class.query.filter_by(login=login).first()
+        return entity
+
     @classmethod
     def produce_password_hash(cls, password):
         """Calculates the hash of a given password using standard werkzeug.security
         function generate_password_hash. No special algorithm taken now, all values are default.
         """
         return generate_password_hash(password)
+
+    @classmethod
+    def check_password_hash(cls, hash_to_check, password_to_check):
+        """Compares the hash of stored password against a user given password.
+        """
+        return check_password_hash(hash_to_check, password_to_check)
+

@@ -7,7 +7,6 @@ from children import create_app
 from models.user import User
 from services.user_service import UserService
 import pytest
-from werkzeug.security import check_password_hash
 
 
 @pytest.fixture(scope='module')
@@ -65,7 +64,7 @@ def test_update_user_change_title_and_password(app):
         new_password = 'newpwd'
         updated_user = user_service.update(user.id, {'title': new_title, 'password': new_password})
         assert updated_user.title == new_title
-        assert check_password_hash(user.password, new_password)
+        assert user_service.check_password_hash(user.password, new_password)
 
 
 def test_delete_by_id(app):

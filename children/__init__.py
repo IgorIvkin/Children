@@ -6,25 +6,36 @@ Date: 2020.05.22
 from flask import Flask, render_template
 from config.application_setup import ApplicationSetup
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 db = SQLAlchemy()
+login_manager = LoginManager()
 
 
-def create_app(test_mode=False, instance_relative_config=False):
+def create_app(test_mode=False):
     app = Flask(__name__)
 
     # Init configuration (depending on environment, test, dev or production - production is not yet implemented)
-    app_setup = ApplicationSetup(app, test_mode)
+    ApplicationSetup(app, test_mode)
     db.init_app(app)
 
     # Init blueprints (they behave as controllers actually)
     from config.blueprints_setup import BlueprintsSetup
-    blueprints_setup = BlueprintsSetup(app)
+    BlueprintsSetup(app)
+
+    # Init login manager and security setup for users of application
+    login_manager.init_app(app)
+    from config.security_setup import SecuritySetup
+    security_setup = SecuritySetup(app)
+
+    # Init user loader for login manager
+    @login_manager.user_loader
+    def load_user(id_user):
+        return security_setup.get_user_service().get_by_id(int(id_user))
 
     # Init basic 404 Not Found error handler
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_not_found(event):
         return render_template("errors/404.html"), 404
 
     return app
-

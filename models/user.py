@@ -28,3 +28,21 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User {0}>".format(self.id)
+
+    @property
+    def is_active(self):
+        return self.status is True
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return str(self.id)
+        except AttributeError:
+            raise NotImplementedError('No `id` attribute - override `get_id`')
