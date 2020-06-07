@@ -8,13 +8,14 @@ from children import db
 
 class BaseService(object):
     """This class provides generic operations over
-    all the typical ID-based entities."""
-    app = None
+        all the typical ID-based entities."""
     base_class = db.Model
-    model_columns = []
 
     def __init__(self, app):
         self.app = app
+        if self.base_class.__name__ == 'Model':
+            raise ValueError('You cannot instantiate an object of a class BaseService. '
+                             'Define some child and define attribute base_class for it.')
         self.model_columns = self.base_class.__table__.columns.keys()
 
     @classmethod
@@ -101,7 +102,3 @@ class BaseService(object):
 
     def __model_has_column__(self, key):
         return key in self.model_columns
-
-
-
-

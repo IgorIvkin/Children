@@ -11,10 +11,8 @@ from datetime import datetime
 
 class UserService(BaseService):
     """This class provides generic operations over users."""
-    app = None
-    base_class = User
-
     def __init__(self, app):
+        self.base_class = User
         super().__init__(app)
 
     @BaseService.pre_check_automatic_id
@@ -75,4 +73,3 @@ class UserService(BaseService):
         """Compares the hash of stored password against a user given password.
         """
         return check_password_hash(hash_to_check, password_to_check)
-

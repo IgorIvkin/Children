@@ -6,6 +6,7 @@ Date: 2020.05.30
 from children import create_app
 from models.user import User
 from services.user_service import UserService
+from services.base_service import BaseService
 import pytest
 
 
@@ -89,6 +90,10 @@ def test_update_user_cannot_assign_bad_column(app):
             updated_user = user_service.update(user.id, {'metadata': 'test'})
 
 
+def test_create_base_service(app):
+    with app.app_context():
+        with pytest.raises(ValueError, match=r"You cannot instantiate an object of a class BaseService*"):
+            service = BaseService(app)
 
 
 

@@ -10,10 +10,10 @@ class ApplicationSetup(object):
     """This class is intended to build a starting application setup including:
      - configuration setup
     """
-    setup_mode = "common"
-    config = None
-
     def __init__(self, app, test_mode=False):
+        self.setup_mode = "common"
+        self.config = None
+        
         if test_mode:
             self.config = TestingConfiguration()
         else:

@@ -8,9 +8,7 @@ from blueprints.main_controller import main_controller
 
 
 class BlueprintsSetup(object):
-    app: Flask = None
-
     def __init__(self, app):
-        self.app = app
+        self.app: Flask = app
         self.app.register_blueprint(main_controller)
 
