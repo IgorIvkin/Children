@@ -1,0 +1,7 @@
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% for js_file in js %}
+        <script type="text/javascript" src="{{ js_file }}"></script>
+    {% endfor %}
+</head>
