@@ -4,7 +4,7 @@ Date: 2020.06.07
 """
 
 from flask import Blueprint, render_template
-from config.security_setup import admin_required
+from config.security.admin_required import admin_required
 
 admin_main_controller = Blueprint("admin_main_controller", __name__)
 

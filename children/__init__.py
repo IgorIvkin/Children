@@ -27,7 +27,7 @@ def create_app(test_mode=False):
 
     # Init login manager and security setup for users of application
     login_manager.init_app(app)
-    from config.security_setup import SecuritySetup
+    from config.security.security_setup import SecuritySetup
     security_setup = SecuritySetup(app)
 
     # Init user loader for login manager
