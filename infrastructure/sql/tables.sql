@@ -36,17 +36,17 @@ ALTER TABLE public.users
     OWNER to children;
 -- Index: users_id_oauth_idx
 
--- DROP INDEX public.users_id_oauth_idx;
+-- DROP INDEX public.idx_id_oauth;
 
-CREATE INDEX users_id_oauth_idx
-    ON public.users USING hash
-    (id_oauth COLLATE pg_catalog."default")
+CREATE UNIQUE INDEX users_idx_id_oauth
+    ON public.users USING btree
+    (id_oauth COLLATE pg_catalog."default" ASC NULLS LAST)
     TABLESPACE pg_default;
--- Index: users_login_idx
+-- Index: idx_login
 
--- DROP INDEX public.users_login_idx;
+-- DROP INDEX public.idx_login;
 
-CREATE INDEX users_login_idx
+CREATE UNIQUE INDEX users_idx_login
     ON public.users USING btree
     (login COLLATE pg_catalog."default" ASC NULLS LAST)
     TABLESPACE pg_default;

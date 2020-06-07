@@ -17,8 +17,8 @@ class User(db.Model):
     """
     __tablename__ = 'users'
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
-    id_oauth = db.Column(db.String(255), nullable=True)
-    login = db.Column(db.String(255), nullable=False)
+    id_oauth = db.Column(db.String(255), unique=True, nullable=True)
+    login = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(255), nullable=True)
     created = db.Column(db.DateTime, nullable=False,default=datetime.utcnow())
