@@ -5,7 +5,7 @@ Date: 2020.05.22
 
 from flask import Flask, render_template
 from config.application_setup import ApplicationSetup
-from children.basic_logs import get_logger
+from children.basic_logging import get_logger
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
