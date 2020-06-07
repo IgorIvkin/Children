@@ -7,6 +7,7 @@ from children import create_app
 from models.user import User
 from services.user_service import UserService
 from services.base_service import BaseService
+from exceptions.model_exceptions import ColumnValidationError
 import pytest
 
 
@@ -29,6 +30,20 @@ def test_create_user(app):
         assert user.id is not None
 
 
+def test_create_user_bad_login(app):
+    with app.app_context():
+        user = User()
+        with pytest.raises(ColumnValidationError, match=r"Wrong user login provided, an email is expected*"):
+            user.login = 'ololo login'
+
+
+def test_create_user_bad_title(app):
+    with app.app_context():
+        user = User()
+        with pytest.raises(ColumnValidationError, match=r"User title is too short, at least 2 characters expected*"):
+            user.title = '1'
+
+
 def test_create_user_fail_none_entity_provided(app):
     with app.app_context():
         user_service = UserService(app)
@@ -40,7 +55,7 @@ def test_get_by_id(app):
     with app.app_context():
         user_service = UserService(app)
         user = User()
-        user.login = 'test@example.com'
+        user.login = 'test2@example.com'
         user.password = 'test'
         user = user_service.create(user)
         assert user_service.get_by_id(user.id).id == user.id and user_service.get_by_id(user.id).login == user.login
@@ -57,7 +72,7 @@ def test_update_user_change_title_and_password(app):
     with app.app_context():
         user_service = UserService(app)
         user = User()
-        user.login = 'tes4@example.com'
+        user.login = 'test4@example.com'
         user.password = 'test1'
         user.title = 'First title'
         user = user_service.create(user)
@@ -83,7 +98,7 @@ def test_update_user_cannot_assign_bad_column(app):
     with app.app_context():
         user_service = UserService(app)
         user = User()
-        user.login = 'tes4@example.com'
+        user.login = 'test6@example.com'
         user.password = 'test1'
         user = user_service.create(user)
         with pytest.raises(ValueError, match=r"Model definition does not have such key*"):
