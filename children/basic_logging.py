@@ -8,7 +8,8 @@ import sys
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 
-LOG_FORMATTING_STRING = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+LOG_FORMATTING_STRING = logging.Formatter('%(asctime)s - %(module)s - %(filename)s - '
+                                          '%(lineno)d  - %(levelname)s - %(message)s')
 
 
 def get_file_handler():
@@ -28,6 +29,24 @@ def get_console_handler():
 
 
 def get_logger(logger_name):
+    """Returns a named logger that includes console logger that prints everything
+    starting from 'debug' level and file logger that prints only the sensible errors starting
+    from 'warning' level.
+
+    How to use:
+    (behind the scene application has a global variable log that
+    points to this logger)
+
+    from children import log
+
+    log.warn('Test warn')
+    log.debug('Test debug')
+    log.error('Test error')
+
+    You can put these output errors in any place of your code. It is recommended to avoid
+    using it for the errors that are easily recoverable, for example not enough params in
+    user input.
+    """
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.DEBUG)
     logger.propagate = False
