@@ -7,7 +7,8 @@ from flask import render_template
 
 
 class HtmlView(object):
-    """Represents a base class to render a HTML-presentation.
+    """
+    Represents a base class to render a HTML-presentation.
     """
     def __init__(self, main_template):
         self.main_template = main_template

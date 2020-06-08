@@ -14,5 +14,4 @@ def render_main_page():
     return (HtmlView("main_blocks/main_template.html")
             .set_title('Главная страница')
             .set_header('main_blocks/main_header.html')
-            .add_js('/js/test.js')
             .render())

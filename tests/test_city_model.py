@@ -6,7 +6,6 @@ Date: 2020.06.07
 from children import create_app
 from models.city import City
 from services.city_service import CityService
-from exceptions.model_exceptions import ColumnValidationError
 import pytest
 
 
