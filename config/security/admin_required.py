@@ -5,7 +5,7 @@ Date: 2020.06.07
 
 from flask import redirect
 from config.security.security_setup import url_of_login_page
-from models.user import USER_TYPE_ADMIN
+import models.user
 from flask_login import current_user
 
 
@@ -25,7 +25,7 @@ def admin_required(func):
         elif not hasattr(current_user, 'type'):
             raise ValueError("Current user exists but has no attribute 'type' that is expected for user. "
                              "Check the following class: {0}".format(type(current_user)))
-        elif current_user.type != USER_TYPE_ADMIN:
+        elif current_user.type != models.user.USER_TYPE_ADMIN:
             return redirect(url_of_login_page())
         else:
             return func(*args, **kwargs)

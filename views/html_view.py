@@ -34,9 +34,10 @@ class HtmlView(object):
             self.js.append(js_file_name)
         return self
 
-    def render(self):
+    def render(self, **kwargs):
         return render_template(self.main_template,
                                header=self.header,
                                footer=self.footer,
                                title=self.title,
-                               js=self.js)
+                               js=self.js,
+                               **kwargs)
