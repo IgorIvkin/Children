@@ -9,13 +9,14 @@ from sqlalchemy.orm import validates
 
 
 class City(db.Model):
-    """Represents a city (town, village) where all the other data is stored.
+    """
+    Represents a city (town, village) where all the other data is stored.
     """
     __tablename__ = 'cities'
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
-    country = db.Column(db.String(2), nullable=False, default="RU")
-    region = db.Column(db.String(255), nullable=False)
+    country = db.Column(db.String(2), index=True, nullable=False, default="RU")
+    region = db.Column(db.String(255), index=True, nullable=False)
 
     def __repr__(self):
         return "<City {0}>".format(self.id)

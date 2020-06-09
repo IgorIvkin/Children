@@ -7,11 +7,13 @@ from flask import Flask, render_template
 from config.application_setup import ApplicationSetup
 from children.basic_logging import get_logger
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 log = get_logger("children")
+migrate = Migrate()
 
 
 def create_app(test_mode=False):
@@ -20,6 +22,9 @@ def create_app(test_mode=False):
     # Init configuration (depending on environment, test, dev or production - production is not yet implemented)
     ApplicationSetup(app, test_mode)
     db.init_app(app)
+
+    # Init migration manager for database
+    migrate.init_app(app, db)
 
     # Init blueprints (they behave as controllers actually)
     from config.blueprints_setup import BlueprintsSetup
