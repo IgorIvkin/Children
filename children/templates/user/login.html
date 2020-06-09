@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User login</title>
+    <title></title>
 </head>
 <body>
-<form action="" method="post" name="login">
-    <label for="login">Email</label>
-    <input type="email" placeholder="Введите свой email" name="login">
-    <br>
-    <label for="password">Пароль</label>
-    <input type="password" placeholder="Введите пароль" name="password">
-    <br>
-    <input type="checkbox" name="remember" value="True" checked> Запоминать меня после закрытия браузера.
-    <br>
-    <button type="submit">Авторизоваться</button>
+
+<form action="" method="post">
+
+    {{ form.csrf_token() }}
+
+    <p> {{ form.email.label() }}</p>
+    <p> {{ form.email }}</p>
+        {% for error in form.email.errors %}
+		{{ error }}
+	    {% endfor %}
+    <p> {{ form.password.label() }}</p>
+    <p> {{ form.password }}</p>
+    <p> {{ form.remember }} {{ form.remember.label() }}</p>
+    <p> {{ form.submit }}</p>
 </form>
+
 </body>
 </html>

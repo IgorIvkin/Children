@@ -6,17 +6,21 @@
 </head>
 <body>
 <p>Заполните поля для авторизации на сайте</p>
-<form action="" method="post" name="register">
-    <label for="login">Email</label>
-    <input type="email" placeholder="Введите свой email" name="login">
-    <br>
-    <label for="title">Имя</label>
-    <input type="text" placeholder="Придумайте имя" name="title">
-    <br>
-    <label for="password">Пароль</label>
-    <input type="password" placeholder="Придумайте пароль" name="password">
-    <br>
-    <button type="submit">Зарегистрироваться</button>
+<form action="" method="post">
+
+    {{ form.csrf_token() }}
+
+    <p> {{ form.email.label() }}</p>
+    <p> {{ form.email }}</p>
+        {% for error in form.email.errors %}
+		{{ error }}
+	    {% endfor %}
+    <p> {{ form.title.label() }}</p>
+    <p> {{ form.title }}</p>
+    <p> {{ form.password.label() }}</p>
+    <p> {{ form.password }}</p>
+
+    <p> {{ form.submit }}</p>
 </form>
 </body>
 </html>
