@@ -8,6 +8,8 @@ from children import db
 from exceptions.model_exceptions import ColumnValidationError
 from datetime import datetime
 from sqlalchemy.orm import validates
+from sqlalchemy import text
+from sqlalchemy.sql import expression, func, text
 
 # User type - plain user
 USER_TYPE_PLAIN = 1
@@ -24,10 +26,10 @@ class User(db.Model):
     login = db.Column(db.String(255), index=True, unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     title = db.Column(db.String(255), nullable=True)
-    created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    status = db.Column(db.Boolean, nullable=False, default=True)
-    type = db.Column(db.Integer, nullable=False, default=USER_TYPE_PLAIN)
+    created = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+    updated = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    status = db.Column(db.Boolean, nullable=False, default=True, server_default=expression.true())
+    type = db.Column(db.Integer, nullable=False, server_default=text('1'))
 
     def __repr__(self):
         return "<User {0}>".format(self.id)

@@ -6,6 +6,7 @@ Date: 2020.06.07
 from children import db
 from exceptions.model_exceptions import ColumnValidationError
 from sqlalchemy.orm import validates
+from sqlalchemy.sql import text
 
 
 class City(db.Model):
@@ -15,7 +16,7 @@ class City(db.Model):
     __tablename__ = 'cities'
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
-    country = db.Column(db.String(2), index=True, nullable=False, default="RU")
+    country = db.Column(db.String(2), index=True, nullable=False, server_default=text("'RU'"))
     region = db.Column(db.String(255), index=True, nullable=False)
 
     def __repr__(self):
