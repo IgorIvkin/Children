@@ -11,6 +11,7 @@ class BaseConfiguration(object):
     TESTING = False
     SECRET_KEY = 'some_secret_key_here!@y12o31op2jh'
     SQLALCHEMY_DATABASE_URI = 'postgresql://children:children556677@localhost/childrenmain'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql://children:children556677@localhost/childrentest'
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
