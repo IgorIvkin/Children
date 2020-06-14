@@ -1,7 +1,15 @@
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title|safe }}</title>
+    <!-- CSS section -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <!-- CSS section (end) -->
+    <!-- Javascript section -->
     {% for js_file in js %}
         <script type="text/javascript" src="{{ js_file }}"></script>
     {% endfor %}
+    <!-- Javascript section (end) -->
 </head>

@@ -1,3 +1,29 @@
 <div class="header">
-    Header here!
+    <div class="header-logo">
+        <span class="site-name">ПАПОМАМЕР</span>
+    </div>
+    <div class="header-menu">
+        <div class="item">
+            <a href="/">Главная</a>
+        </div>
+        <div class="item">
+            <a href="#">Товары</a>
+        </div>
+        <div class="item">
+            <a href="#">Услуги</a>
+        </div>
+        <div class="item">
+            <a href="#">Полезности</a>
+        </div>
+    </div>
+    <div class="header-user-block">
+        {% if not current_user.is_authenticated %}
+            <i class="icon icon-user"></i>
+            <span class="you-are-not-logged">
+                <a href="/user/register/">Зарегистрируйтесь</a><br />или <a href="/user/login/">войдите</a>
+            </span>
+        {% else %}
+            <!-- Implement this section for authenticated user -->
+        {% endif %}
+    </div>
 </div>

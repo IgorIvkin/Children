@@ -9,6 +9,7 @@ from services.user_service import UserService
 from flask_login import login_user
 from forms.login_form import LoginForm
 from forms.register_form import RegisterForm
+from views.web_site_html_view import WebSiteHtmlView
 
 
 user_controller = Blueprint("user_controller", __name__)
@@ -45,6 +46,10 @@ def render_login_page():
                 login_user(registered_user, remember=remember)
                 return redirect('/')
 
-    return render_template("user/login.html", form=login_form)
+    # return render_template("user/login.html", form=login_form)
+    return (WebSiteHtmlView("main_blocks/main_template.html")
+            .set_title('Вход на сайт')
+            .set_content('user/login.html')
+            .render(form=login_form))
 
 

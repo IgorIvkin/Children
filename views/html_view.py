@@ -13,12 +13,17 @@ class HtmlView(object):
     def __init__(self, main_template):
         self.main_template = main_template
         self.header = ''
+        self.content = ''
         self.footer = ''
         self.title = ''
         self.js = []
 
     def set_header(self, header):
         self.header = header
+        return self
+
+    def set_content(self, content):
+        self.content = content
         return self
 
     def set_footer(self, footer):
@@ -37,6 +42,7 @@ class HtmlView(object):
     def render(self, **kwargs):
         return render_template(self.main_template,
                                header=self.header,
+                               content=self.content,
                                footer=self.footer,
                                title=self.title,
                                js=self.js,
