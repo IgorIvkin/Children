@@ -28,7 +28,11 @@ def render_register_page():
         user_service.create(user)
         return redirect('/')
 
-    return render_template("user/register.html", form=register_form)
+    # return render_template("user/register.html", form=register_form)
+    return (WebSiteHtmlView("main_blocks/main_template.html")
+            .set_title('Регистрация на сайте')
+            .set_content('user/register.html')
+            .render(form=register_form))
 
 
 @user_controller.route('/user/login/', methods=['post', 'get'])
