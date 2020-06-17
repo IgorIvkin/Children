@@ -23,6 +23,7 @@ def test_city_get_with_title_part(app):
         city_service = CityService(app)
         city = City()
         city.title = 'Пенза'
+        city.title_with_preposition = 'в Пензе'
         city.region = 'Пензенская область'
         city.country = 'RU'
         city_service.create(city)

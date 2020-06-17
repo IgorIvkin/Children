@@ -16,6 +16,9 @@ class City(db.Model):
     __tablename__ = 'cities'
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
+    # Title with preposition used to build correct preposition form inside of sentence,
+    # for example: в Пензе, во Владимире и т.п.
+    title_with_preposition = db.Column(db.String(255), nullable=False)
     country = db.Column(db.String(2), index=True, nullable=False, server_default=text("'RU'"))
     region = db.Column(db.String(255), index=True, nullable=False)
 
@@ -28,6 +31,16 @@ class City(db.Model):
             raise ColumnValidationError('City title is too short, at least two characters expected: {0}'.format(title))
         elif len(title) > 255:
             raise ColumnValidationError('City title is too long, max 255 characters allowed: {0}'.format(title))
+        return title
+
+    @validates('title_with_preposition')
+    def validate_title_with_preposition(self, key, title):
+        if len(title) < 2:
+            raise ColumnValidationError('Title_with_preposition is too short, '
+                                        'at least two characters expected: {0}'.format(title))
+        elif len(title) > 255:
+            raise ColumnValidationError('Title_with_preposition is too long, '
+                                        'max 255 characters allowed: {0}'.format(title))
         return title
 
     @validates('country')
