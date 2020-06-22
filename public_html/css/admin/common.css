@@ -5,3 +5,89 @@ body {
     font-family:        'Open Sans', sans-serif;
     font-size:          16px;
 }
+
+.container {
+    display:                grid;
+    grid-template-columns:  300px 5fr;
+    height:                 100vh;
+}
+
+.container .menu {
+    background-color:   #505050;
+    height:             100%;
+}
+
+.container .menu .menu-container ul {
+    list-style: none;
+    margin:     20px 0 20px 0;
+    padding:    0;
+}
+
+.container .menu .menu-container li {
+    margin: 0;
+}
+
+.container .menu .menu-container li.header {
+    padding:    10px 20px 10px 20px;
+    font-size:  18px;
+    color:      #cacaca;
+}
+
+.container .menu .menu-container li a:link {transition:0.5s;display:block;padding:10px 20px 10px 20px;text-decoration:none;color:#f5f5f5;}
+.container .menu .menu-container li a:visited {text-decoration:none;color:#f5f5f5;}
+.container .menu .menu-container li a:hover {transition:0.5s;color:#dcdcdc;padding:10px 20px 10px 23px;background-color:#909090;}
+
+.container .menu .copyrights {
+    border-top: 1px solid #909090;
+    padding:    20px 0 20px 30px;
+    font-size:  13px;
+    color:      #cacaca;
+}
+.container .menu .copyrights .links {
+    margin: 10px 0 0 0;
+}
+
+
+.container .menu .copyrights a:link {color:#cacaca;text-decoration:underline;}
+.container .menu .copyrights a:visited {color:#cacaca;}
+.container .menu .copyrights a:hover {color:#f5f5f5;}
+
+.container .content {
+}
+
+.container .content .header {
+    display:            flex;
+    justify-content:    space-between;
+    align-items:        center;
+    background-color:   #a2c3e8;
+}
+
+.container .content .header .site-name {
+    font-family:    'Montserrat', sans-serif;
+    font-size:      26px;
+    margin:         20px 0 20px 40px;
+}
+
+.container .content .header .site-name .site-name-appendix {
+    font-size:      22px;
+    color:          #707070;
+    font-weight:    300;
+}
+
+.container .content .header .user-greeting {
+    margin: 0 40px 0 0;
+}
+
+.container .content h1 {
+    display:        inline-block;
+    margin:         10px 40px;
+    font-weight:    300;
+    font-size:      26px;
+    border-bottom:  3px solid #be8abf;
+}
+
+.container .content .explanation {
+    margin:     10px 40px;
+    border:     1px dashed #eaeaea;
+    padding:    10px 20px;
+}

@@ -2,7 +2,23 @@
 <html lang="ru">
 {% include 'admin/main_blocks/main_head_element.html' %}
 <body>
-    {% include header ignore missing %}
-    {% include footer ignore missing %}
+    <div class="container">
+        <div class="menu">
+            {% include admin_menu ignore missing %}
+        </div>
+        <div class="content">
+            <div class="header">
+                <div class="site-name">
+                    ПАПОМАМЕР <span class="site-name-appendix">Центр управления полётами</span>
+                </div>
+                <div class="user-greeting">
+                    {% if current_user.is_authenticated %}
+                        Привет, {{ current_user.title }}!<br />
+                    {% endif %}
+                </div>
+            </div>
+            {% include content ignore missing %}
+        </div>
+    </div>
 </body>
 </html>

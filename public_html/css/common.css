@@ -76,6 +76,10 @@ i.icon {
     line-height:    160%;
 }
 
+.header .header-user-block .logged-greeting {
+    font-size: 14px;
+}
+
 .main-container {
     max-width:  1000px;
     min-width:  320px;

@@ -27,7 +27,11 @@
                 <a href="/user/register/">Зарегистрируйтесь</a><br />или <a href="/user/login/">войдите</a>
             </span>
         {% else %}
-            <!-- Implement this section for authenticated user -->
+            <i class="icon icon-user"></i>
+            <span class="logged-greeting">
+                Привет, {{ current_user.title }}!<br />
+                <a class="js" href="javascript:void(0);">Выйти</a>
+            </span>
         {% endif %}
     </div>
 </div>

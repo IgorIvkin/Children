@@ -15,4 +15,5 @@ admin_main_controller = Blueprint("admin_main_controller", __name__)
 def render_main_page():
     return (AdminHtmlView("admin/main_blocks/main_template.html")
             .set_title('Администраторский интерфейс &mdash; Главная страница')
+            .set_content('admin/main_page/main_page.html')
             .render())
