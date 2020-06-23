@@ -6,7 +6,7 @@ Date: 2020.06.07
 from flask import Blueprint, current_app, request
 from config.security.admin_required import admin_required
 from views.admin_html_view import AdminHtmlView
-from forms.phones_form import PhoneForm
+from forms.phones_form import PhonesForm
 from services.phone_service import PhoneService
 from services.city_service import CityService
 from models.phone import Phone
@@ -28,7 +28,7 @@ def render_main_page():
     phone_service = PhoneService(current_app)
     city_service = CityService(current_app)
 
-    phone_form = PhoneForm()
+    phone_form = PhonesForm()
     phone_form.city.choices = [(row.id, row.title) for row in city_service.get_all()]
 
     phone = Phone()
