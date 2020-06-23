@@ -1,0 +1,14 @@
+<h1>Полезные телефоны</h1>
+    <form action="" method="post">
+
+        {{ form.csrf_token() }}
+
+         {{ form.city.label() }}
+         {{ form.city }}
+        <p> {{ form.phone.label() }}</p>
+        <p> {{ form.phone }}</p>
+        <p> {{ form.other_phone.label() }}</p>
+        <p> {{ form.other_phone }}</p>
+        <p> {{ form.description.label() }} {{ form.description }}</p>
+        <p> {{ form.submit }}</p>
+    </form>

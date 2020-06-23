@@ -3,7 +3,7 @@ Author: Igor
 Date: 2020.06.07
 """
 
-from flask import Blueprint, render_template, request, current_app, redirect
+from flask import Blueprint, request, current_app, redirect
 from models.user import User
 from services.user_service import UserService
 from flask_login import login_user

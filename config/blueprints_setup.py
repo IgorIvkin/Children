@@ -19,3 +19,4 @@ class BlueprintsSetup(object):
         self.app.register_blueprint(blueprint=admin_main_controller,
                                     url_prefix='/admin')
 
+

@@ -84,6 +84,10 @@ class BaseService(object):
         obj = self.base_class.query.filter_by(id=id_entity).first()
         return obj
 
+    def get_all(self):
+        all_data = db.session.query(self.base_class).all()
+        return all_data
+
     def delete_by_id(self, id_entity, fail_if_entity_not_exists=False):
         # delete the object from db by id
         obj = self.get_by_id(id_entity)
