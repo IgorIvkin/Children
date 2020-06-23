@@ -79,7 +79,7 @@
 
 <div class="common">
     <h2>Обычная форма</h2>
-    <form class="typical-form" method="POST" action="/admin/">
+    <form class="typical-form" method="POST" action="/admin/" style="width:60%;">
         <div class="section">
             <div class="label light-grey">
                 <label for="input1">
@@ -88,6 +88,31 @@
             </div>
             <div class="input medium-grey">
                 <input type="text" placeholder="Текстовое поле" id="input1" name="input1">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label light-grey">
+                <label for="input2">
+                    Текстовое поле для большого текста
+                </label>
+            </div>
+            <div class="input medium-grey">
+                <textarea id="input2" name="text2"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label light-grey">
+                <label for="input3">
+                    Поле с вариантами выбора (селект)
+                </label>
+            </div>
+            <div class="input medium-grey">
+                <select name="input3" id="input3">
+                    <option value="1">Вариант 1</option>
+                    <option value="2">Вариант 2</option>
+                </select>
             </div>
         </div>
     </form>

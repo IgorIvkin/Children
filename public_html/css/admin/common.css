@@ -154,7 +154,9 @@ body {
     padding:        20px;
 }
 
-.container .typical-form .section .input input[type=text] {
+.container .typical-form .section .input input[type=text],
+.container .typical-form .section .input textarea,
+.container .typical-form .section .input select {
     font-family:    'Open Sans', sans-serif;
     border:         1px solid #909090;
     padding:        10px;
@@ -164,8 +166,19 @@ body {
     box-sizing:     border-box;
     transition:     0.3s;
 }
+.container .typical-form .section textarea {
+    height: 100px;
+}
 
-.container .typical-form .section .input input[type=text]:focus {
+.container .typical-form .section .input option {
+    padding: 10px;
+    outline: none;
+}
+
+
+.container .typical-form .section .input input[type=text]:focus,
+.container .typical-form .section .input textarea:focus,
+.container .typical-form .section .input select:focus {
     border-color: #80bdff;
     outline:      0;
     box-shadow:   0 0 0 0.2rem rgba(0,123,255,.25);
