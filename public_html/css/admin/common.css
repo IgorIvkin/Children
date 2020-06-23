@@ -6,6 +6,18 @@ body {
     font-size:          16px;
 }
 
+.light-grey {
+    background-color: #eaeaea;
+}
+
+.medium-grey {
+    background-color: #bcbcbc;
+}
+
+.dark-grey {
+    background-color: #909090;
+}
+
 .container {
     display:                grid;
     grid-template-columns:  300px 5fr;
@@ -86,8 +98,75 @@ body {
     border-bottom:  3px solid #be8abf;
 }
 
+.container .content h2 {
+    font-size: 20px;
+}
+
 .container .content .explanation {
     margin:     10px 40px;
     border:     1px dashed #eaeaea;
     padding:    10px 20px;
+}
+
+.container .common {
+    margin: 10px 40px 60px 40px;
+}
+
+.container .grid-2-columns {
+    display:                grid;
+    grid-template-columns:  1fr 1fr;
+}
+
+.container .grid-2-columns.right-greater {
+    grid-template-columns:  1fr 2fr;
+}
+
+.container .grid-2-columns.left-greater {
+    grid-template-columns:  2fr 1fr;
+}
+
+.container .grid-3-columns {
+    display:                grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+
+.container .row-content {
+    display:        flex;
+    flex-direction: column;
+}
+
+.container .typical-form .section {
+    display:            flex;
+    box-sizing:         border-box;
+}
+
+.container .typical-form .section .label {
+    display:        flex;
+    align-items:    center;
+    width:          20%;
+    padding:        20px;
+}
+
+.container .typical-form .section .input {
+    display:        flex;
+    align-items:    center;
+    width:          80%;
+    padding:        20px;
+}
+
+.container .typical-form .section .input input[type=text] {
+    font-family:    'Open Sans', sans-serif;
+    border:         1px solid #909090;
+    padding:        10px;
+    font-size:      16px;
+    outline:        none;
+    width:          100%;
+    box-sizing:     border-box;
+    transition:     0.3s;
+}
+
+.container .typical-form .section .input input[type=text]:focus {
+    border-color: #80bdff;
+    outline:      0;
+    box-shadow:   0 0 0 0.2rem rgba(0,123,255,.25);
 }

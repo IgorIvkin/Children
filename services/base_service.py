@@ -86,7 +86,6 @@ class BaseService(object):
 
     def get_all(self):
         all_data = self.base_class.query.all()
-        #db.session.query(self.base_class).all()
         return all_data
 
     def delete_by_id(self, id_entity, fail_if_entity_not_exists=False):

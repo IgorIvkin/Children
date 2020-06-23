@@ -7,6 +7,7 @@ from flask import Flask
 from blueprints.main_controller import main_controller
 from blueprints.user_controller import user_controller
 from blueprints.admin.admin_main_controller import admin_main_controller
+from blueprints.admin.admin_phone_controller import admin_phone_controller
 
 
 class BlueprintsSetup(object):
@@ -18,5 +19,7 @@ class BlueprintsSetup(object):
         # Admin controllers
         self.app.register_blueprint(blueprint=admin_main_controller,
                                     url_prefix='/admin')
+        self.app.register_blueprint(blueprint=admin_phone_controller,
+                                    url_prefix='/admin/phones/')
 
 
