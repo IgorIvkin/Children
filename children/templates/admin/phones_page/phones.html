@@ -1,14 +1,45 @@
 <h1>Полезные телефоны</h1>
-    <form action="" method="post">
+<div class="add_new_phone">
+    <form action="" method="post" class="typical-form">
 
         {{ form.csrf_token() }}
+        <div class="section city">
+            <div class="label">
+                {{ form.city.label() }}
+            </div>
+            <div class="input">
+                {{ form.city }}
+            </div>
+        </div>
+        <div class="section phone_number">
+            <div class="label">
+                {{ form.phone.label() }}
+            </div>
+            <div class="input">
+                {{ form.phone }}
+            </div>
+        </div>
+        <div class="section other_phone_number">
+            <div class="label">
+                {{ form.other_phone.label() }}
+            </div>
+            <div class="input">
+                {{ form.other_phone }}
+            </div>
+        </div>
+        <div class="section description">
+            <div class="label">
+                {{ form.description.label() }}
+            </div>
+            <div class="input">
+                {{ form.description }}
+            </div>
+        </div>
 
-         {{ form.city.label() }}
-         {{ form.city }}
-        <p> {{ form.phone.label() }}</p>
-        <p> {{ form.phone }}</p>
-        <p> {{ form.other_phone.label() }}</p>
-        <p> {{ form.other_phone }}</p>
-        <p> {{ form.description.label() }} {{ form.description }}</p>
-        <p> {{ form.submit }}</p>
+        <div class="section">
+            <div class="input btn">
+                {{ form.submit(class='btn') }}
+            </div>
+        </div>
     </form>
+</div>
