@@ -1,15 +1,15 @@
 <h1>Редактировать телефон</h1>
 <div class="edit_phone">
-    <form action="do_edit/" method="post" class="typical-form">
+    <form action="/admin/phones/do_edit/" method="post" class="typical-form">
 
         {{ form.csrf_token() }}
         {{ form.id_phone }}
         <div class="section city">
             <div class="label">
-                {{ form.city.label() }}
+                {{ form.id_city.label() }}
             </div>
             <div class="input">
-                {{ form.city }}
+                {{ form.id_city }}
             </div>
         </div>
         <div class="section phone_number">
