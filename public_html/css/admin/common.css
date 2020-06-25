@@ -184,13 +184,14 @@ body {
     box-shadow:   0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
-.add_new_phone {
+.add_new_phone,
+.edit_phone {
     margin:     10px 40px;
     padding:    10px 20px;
     width:      50%;
 
 }
-.input #submit {
+.input .btn {
     font-family: 'Open Sans', sans-serif;
     font-size:   16px;
     padding:     5px;

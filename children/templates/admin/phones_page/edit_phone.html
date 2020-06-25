@@ -1,8 +1,9 @@
-<h1>Полезные телефоны</h1>
-<div class="add_new_phone">
-    <form action="" method="post" class="typical-form">
+<h1>Редактировать телефон</h1>
+<div class="edit_phone">
+    <form action="do_edit/" method="post" class="typical-form">
 
         {{ form.csrf_token() }}
+        {{ form.id_phone }}
         <div class="section city">
             <div class="label">
                 {{ form.city.label() }}
@@ -38,7 +39,7 @@
 
         <div class="section">
             <div class="input">
-                {{ form.submit(class='btn') }}
+                {{ form.submit_edit(class='btn') }}
             </div>
         </div>
     </form>
