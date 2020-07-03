@@ -25,7 +25,7 @@ i.icon {
 }
 
 .header {
-    max-width:              1000px;
+    max-width:              1200px;
     min-width:              320px;
     margin:                 auto;
     display:                grid;
@@ -81,7 +81,7 @@ i.icon {
 }
 
 .main-container {
-    max-width:  1000px;
+    max-width:  1200px;
     min-width:  320px;
     margin:     auto;
 }
@@ -133,7 +133,7 @@ i.icon {
     cursor:             pointer;
     width:              100%;
     height:             100%;
-    font-size:          0px;
+    font-size:          0;
     outline:            none;
     padding:            10px;
     border:             0;
@@ -167,7 +167,7 @@ i.icon {
 }
 
 .footer {
-    max-width:              1000px;
+    max-width:              1200px;
     min-width:              320px;
     border-top:             1px solid #dcdcdc;
     margin:                 20px auto 0 auto;

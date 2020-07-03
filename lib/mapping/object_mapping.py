@@ -59,13 +59,15 @@ def map_objects(source=None, destination=None, suffix_of_destination=None, suffi
     if destination is None:
         raise ValueError('Destination object has to be set for mapping')
 
-    if type(destination) is dict:
+    if type(destination) is dict and type(source) is not dict:
         map_object_to_dict(source=source,
                            destination=destination,
                            suffix_of_source=suffix_of_source,
                            keys_to_map=keys_to_map)
-    else:
+    elif type(source) is not dict:
         map_object_to_object(source=source,
                              destination=destination,
                              suffix_of_destination=suffix_of_destination,
                              suffix_of_source=suffix_of_source)
+    else:
+        raise ValueError('Unknown type of source or destination: source - {0}, destination - {1}'.format(str(type(source)), str(type(destination))))
