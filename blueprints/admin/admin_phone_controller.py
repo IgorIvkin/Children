@@ -18,19 +18,29 @@ admin_phone_controller = Blueprint("admin_phone_controller", __name__)
 @admin_phone_controller.route('/', methods=['post', 'get'])
 @admin_required
 def render_main_page():
+    return (AdminHtmlView("admin/main_blocks/main_template.html")
+            .set_title('Администраторский интерфейс &mdash; Добавление телефонов')
+            .set_content('admin/phones_page/phones.html')
+            .render())
+
+
+@admin_phone_controller.route('/add/', methods=['post', 'get'])
+@admin_required
+def render_add_page():
     phone_service = PhoneService(current_app)
     city_service = CityService(current_app)
 
     phone_form = PhoneCreationForm()
     phone_form.id_city.choices = [(row.id, row.title) for row in city_service.get_all()]
-
     if request.method == 'POST' and phone_form.validate_on_submit():
         phone = Phone()
         map_objects(source=phone_form, destination=phone, suffix_of_source='data')
         phone_service.create(phone)
+        return redirect('/admin/phones/')
+
     return (AdminHtmlView("admin/main_blocks/main_template.html")
             .set_title('Администраторский интерфейс &mdash; Добавление телефонов')
-            .set_content('admin/phones_page/phones.html')
+            .set_content('admin/phones_page/add_phone.html')
             .render(form=phone_form))
 
 

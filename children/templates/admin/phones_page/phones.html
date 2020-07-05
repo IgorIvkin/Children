@@ -1,45 +1,6 @@
-<h1>Полезные телефоны</h1>
-<div class="add_new_phone">
-    <form action="" method="post" class="typical-form">
-
-        {{ form.csrf_token() }}
-        <div class="section city">
-            <div class="label">
-                {{ form.id_city.label() }}
-            </div>
-            <div class="input">
-                {{ form.id_city }}
-            </div>
-        </div>
-        <div class="section phone_number">
-            <div class="label">
-                {{ form.phone.label() }}
-            </div>
-            <div class="input">
-                {{ form.phone }}
-            </div>
-        </div>
-        <div class="section other_phone_number">
-            <div class="label">
-                {{ form.other_phones.label() }}
-            </div>
-            <div class="input">
-                {{ form.other_phones }}
-            </div>
-        </div>
-        <div class="section description">
-            <div class="label">
-                {{ form.description.label() }}
-            </div>
-            <div class="input">
-                {{ form.description }}
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="input">
-                {{ form.submit(class='btn') }}
-            </div>
-        </div>
-    </form>
+<h1>Добавить или отредактировать телефон</h1>
+<div class="common">
+    <div class="input">
+        <a class=" btn add_button" href="/admin/phones/add/">Добавить новый номер</a>
+    </div>
 </div>

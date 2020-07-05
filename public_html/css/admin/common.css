@@ -203,3 +203,21 @@ body {
     border:           1px solid #909090;
 }
 
+.errors {
+    color: #9C1A1C;
+    font-size: 12px;
+}
+.message {
+    color: #3A7734;
+}
+
+.add_button {
+    display: inline-block;
+    text-decoration: none;
+    border: solid 1px;
+    background-color: rgb(239, 239, 239);
+    border-color: rgb(118, 118, 118);
+    color:  black;
+    padding: 5px;
+
+}
